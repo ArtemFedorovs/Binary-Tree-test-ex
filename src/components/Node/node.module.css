@@ -1,0 +1,65 @@
+:root {
+  --elem-dimension: 30px;
+}
+.elementValue{
+  min-height: var(--elem-dimension);
+  width: var(--elem-dimension);
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+
+}
+.connectionPartTop{
+  position:absolute;
+  width: var(--elem-dimension);
+  height: 50%;
+  top: 0;
+  left: calc(-1 * var(--elem-dimension)/2);;
+  border-bottom: 1px solid black;
+  border-left: 1px solid white;
+}
+.connectionPartMiddle{
+  position:absolute;
+  left: calc(var(--elem-dimension)/2);
+  width: var(--elem-dimension);
+  height: 100%;
+  border-left: 1px solid black;
+}
+.connectionPartBot{
+  position:absolute;
+  width: var(--elem-dimension);
+  height: 50%;
+  bottom: 0;
+  left: calc(-1 * var(--elem-dimension)/2);
+  border-top: 1px solid black;
+  border-left: 1px solid white;
+}
+
+.childrens{
+  display: inline-flex;
+  flex-direction:column;
+}
+
+.text{
+  height: var(--elem-dimension);
+  line-height: var(--elem-dimension);
+  width: var(--elem-dimension);
+  border-radius: 15px;
+  border: 1px solid black;
+  background-color: white;
+  z-index: 3;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+.children{
+  position: relative;
+  padding: 4px 0 4px 0;
+}
+
+.node{
+  display: flex;
+  align-items: stretch;
+}

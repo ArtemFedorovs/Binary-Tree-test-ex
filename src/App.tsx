@@ -1,26 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TreeNode from './components/Node/node';
 
-function App() {
+
+export default function App() {
+  console.log("render")
+  class BinarySearchTree {
+    root: null | TreeElem
+    constructor() { this.root = null }
+
+    insert(value: number) {
+      let newNode = new TreeElem(value);
+      if (this.root === null) {
+          this.root = newNode;
+      } else {
+          this.insertNode(this.root, newNode); 
+      }
+    }
+
+    insertNode(node: TreeElem, newNode: TreeElem) {
+      if (newNode?.value == node?.value) {return} //если такой элемент найден, то не дедаем ничего
+      if (newNode?.value < node?.value) {
+          if (node.left === null) {
+              node.left = newNode;
+          } else {
+              this.insertNode(node.left, newNode);
+          }
+      } else {
+          if (node.right === null) {
+              node.right = newNode;
+          } else {
+              this.insertNode(node.right, newNode);
+          }
+      }
+  }
+};
+
+  class TreeElem {
+    value: number;
+    left: TreeElem | null;
+    right:  TreeElem | null;
+    constructor(value: number) {
+      this.value = value;
+      this.left = null;  
+      this.right = null; 
+    }
+  };
+
+  const [tree, setTree] = useState(new BinarySearchTree()); //
+
+  useEffect(() => {  //Добавление элемента в дерево по нажатию пробела
+    function handleSpaceClick(event: KeyboardEvent) {
+      if (event.code == 'Space') {
+        let newTree = Object.assign(new BinarySearchTree, tree);
+        newTree.insert(Math.round(Math.random()*200-100))
+        setTree(newTree);
+      }
+    }
+    document.addEventListener('keydown', handleSpaceClick);
+    return function cleanup() {document.removeEventListener('keydown', handleSpaceClick)}
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main className="App-main">
+        {tree.root && <TreeNode data ={tree.root}/>}
+      </main>
     </div>
   );
 }
-
-export default App;
