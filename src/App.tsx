@@ -48,7 +48,7 @@ export default function App() {
     }
   };
 
-  const [tree, setTree] = useState(new BinarySearchTree()); //
+  const [tree, setTree] = useState(new BinarySearchTree()); 
 
   useEffect(() => {  //Добавление элемента в дерево по нажатию пробела
     function handleSpaceClick(event: KeyboardEvent) {
@@ -63,8 +63,12 @@ export default function App() {
   });
 
   return (
-    <div className="App">
-      <main className="App-main">
+    <div className="app">
+      <header>
+        <h2>Визуализация бинарного дерева поиска</h2>
+        <p>Нажмите пробел, чтобы добавить случайный элемент</p>
+      </header>
+      <main className="main">
         {tree.root && <TreeNode data ={tree.root}/>}
       </main>
     </div>

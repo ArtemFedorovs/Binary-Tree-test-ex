@@ -7,19 +7,19 @@ let TreeNode = (({data}: TreeNodePropsType) => {
   return (
     <div className={styles.node}>
       <div className={styles.elementValue}>
-      <div className={styles.connectionPartMiddle}/>
+       <div className={styles.connectionPartMiddle}/> {/*вертикальная  часть стрелки, соединяющей кружки */}
         <div className={styles.text}>{data.value}</div>
       </div>
-      <div className={styles.childrens}>
+      {(data.left || data.right) &&<div className={styles.childrens}>
         <div className={styles.children}>
-        <div className={styles.connectionPartTop}/>  
+        <div className={styles.connectionPartLeft}/>   {/*верхняя горизонтальная часть стрелки, соединяющей кружки */}
           {data.left ? <TreeNode data= {data.left}/>:<div className={styles.text}>-</div>}
         </div>
         <div className={styles.children}>
-          <div className={styles.connectionPartBot}/>
+          <div className={styles.connectionPartRight}/> {/*нижняя горизонтальная часть стрелки, соединяющей кружки */}
           {data.right ? <TreeNode data= {data.right}/>:<div className={styles.text}>-</div>}
         </div>
-      </div>
+      </div>}
     </div>
   );
 }
