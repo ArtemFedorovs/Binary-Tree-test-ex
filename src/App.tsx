@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 import TreeNode from './components/Node/node';
 
 
 export default function App() {
-  console.log("render")
   class BinarySearchTree {
     root: null | TreeElem
-    constructor() { this.root = null }
+    constructor() { this.root = null }  //Уставливаем коренной элемент дерева навным null
 
-    insert(value: number) {
-      let newNode = new TreeElem(value);
-      if (this.root === null) {
+    insert(value: number) {  // метод добавления нового элемента дерева
+      let newNode = new TreeElem(value); // создаем объект узла дерева
+      if (this.root === null) {  //если дерево пустое, добавленный элемент становится корнем дерева
           this.root = newNode;
-      } else {
-          this.insertNode(this.root, newNode); 
+      } else {  //если дерево не пустое, то ищем место для нового элемента в дереве начиная с корня дерева
+          this.insertNode(this.root, newNode);  
       }
     }
 
     insertNode(node: TreeElem, newNode: TreeElem) {
-      if (newNode?.value == node?.value) {return} //если такой элемент найден, то не дедаем ничего
-      if (newNode?.value < node?.value) {
-          if (node.left === null) {
-              node.left = newNode;
+      if (newNode?.value == node?.value) {return} //если такой элемент найден, то не делаем ничего (только потому что индекс и значение элемента в нашей задаче совпадают)
+      if (newNode?.value < node?.value) { // если новый элемент меньше рассматриваемого узла
+          if (node.left === null) { //и рассматриваемый узел не имеет ветки с меньшими значениями
+              node.left = newNode;  // то назначаем новый элемент началом данной ветки
           } else {
-              this.insertNode(node.left, newNode);
+              this.insertNode(node.left, newNode); // если рассматриваемый узел имеет ветку с меньшими значениями, то рекурсивно  ищем место для нового элемента в этой ветке
           }
-      } else {
+      } else {  // тоже самое с правой веткой
           if (node.right === null) {
               node.right = newNode;
           } else {
@@ -50,7 +48,7 @@ export default function App() {
 
   const [tree, setTree] = useState(new BinarySearchTree()); 
 
-  useEffect(() => {  //Добавление элемента в дерево по нажатию пробела
+  useEffect(() => {  //обработчик добавления элемента в дерево по нажатию пробела
     function handleSpaceClick(event: KeyboardEvent) {
       if (event.code == 'Space') {
         let newTree = Object.assign(new BinarySearchTree, tree);
