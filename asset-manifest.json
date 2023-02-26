@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ArtemFedorovs/Binary-Tree-test-ex.git/static/css/main.75f034c2.css",
+    "main.js": "/ArtemFedorovs/Binary-Tree-test-ex.git/static/js/main.6902f25f.js",
+    "index.html": "/ArtemFedorovs/Binary-Tree-test-ex.git/index.html",
+    "main.75f034c2.css.map": "/ArtemFedorovs/Binary-Tree-test-ex.git/static/css/main.75f034c2.css.map",
+    "main.6902f25f.js.map": "/ArtemFedorovs/Binary-Tree-test-ex.git/static/js/main.6902f25f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.75f034c2.css",
+    "static/js/main.6902f25f.js"
+  ]
+}
